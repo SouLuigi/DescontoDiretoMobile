@@ -18,6 +18,7 @@ class _LoginScreenState extends State<login_Screen> {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(top: 200.0),
@@ -47,6 +48,7 @@ class _LoginScreenState extends State<login_Screen> {
                 ),
               ),
             ],
+            children: [],
           ),
         ),
       ),
