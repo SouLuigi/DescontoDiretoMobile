@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class login_Screen extends StatefulWidget {
@@ -9,7 +8,7 @@ class login_Screen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<login_Screen> {
-   bool _isPasswordVisible = false;
+  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +18,37 @@ class _LoginScreenState extends State<login_Screen> {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [],
 
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(top: 200.0),
+                child: Container(
+                  width: 170.0,
+                  height: 110.0,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('assets/images/img.png'),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 74),
+              Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40),
+                    ),
+                    color: Color(0xFFFFB703),
+                  ),
+                  width: MediaQuery.of(context).size.width,
+                  height: 300.0,
+                ),
+              ),
+            ],
+            children: [],
           ),
         ),
       ),
