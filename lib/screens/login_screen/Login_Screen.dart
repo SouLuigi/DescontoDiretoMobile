@@ -43,7 +43,7 @@ class _LoginScreenState extends State<login_Screen> {
                     color: Color(0xFFFFB703),
                   ),
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
+                  height: 300.0,
                 ),
               ),
             ],
