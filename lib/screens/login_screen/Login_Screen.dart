@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class login_Screen extends StatefulWidget {
   const login_Screen({super.key});
@@ -43,7 +44,21 @@ class _LoginScreenState extends State<login_Screen> {
                     color: Color(0xFFFFB703),
                   ),
                   width: MediaQuery.of(context).size.width,
-                  height: 300.0,
+                  height: MediaQuery.of(context).size.height,
+                  child: Column(
+                    children: [
+                      Text(
+                        'Login',
+                        style: GoogleFonts.kaiseiDecol(
+                          textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30.0,
+                          ),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
