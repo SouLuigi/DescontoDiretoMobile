@@ -58,6 +58,7 @@ class _LoginScreenState extends State<login_Screen> {
                         ),
                         textAlign: TextAlign.center,
                       ),
+
                     ],
                   ),
                 ),
