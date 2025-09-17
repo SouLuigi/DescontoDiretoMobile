@@ -27,6 +27,8 @@ class LoginTextInput extends StatelessWidget {
          labelText: label,
          prefixIcon: prefixIcon != null? Icon(prefixIcon): null,
          border: OutlineInputBorder(),
+         filled: true,
+         fillColor: Colors.white,
        ),
        obscureText: obscureText,
        keyboardType: keyboardType,

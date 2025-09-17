@@ -1,4 +1,7 @@
+import 'package:desconto_direto_mobile/screens/login_screen/components/login_text_input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class login_Screen extends StatefulWidget {
@@ -9,7 +12,20 @@ class login_Screen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<login_Screen> {
-  bool _isPasswordVisible = false;
+  final _formKey = GlobalKey<FormBuilderState>();
+
+  void _submit() {
+    if (_formKey.currentState?.saveAndValidate() ?? false) {
+      final data = _formKey.currentState!.value;
+      print('Email: ${data['email']}');
+      print('Senha: ${data['password']}');
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Login realizado com sucesso')));
+    } else {
+      print('Erro na validação');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +74,49 @@ class _LoginScreenState extends State<login_Screen> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-
+                      FormBuilder(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            LoginTextInput(
+                              name: 'email',
+                              label: 'Email',
+                              prefixIcon: Icons.email,
+                              keyboardType: TextInputType.emailAddress,
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(
+                                  errorText: 'Email obrigatório',
+                                ),
+                                FormBuilderValidators.email(
+                                  errorText: 'Email inválido',
+                                ),
+                              ]),
+                            ),
+                            const SizedBox(height: 24,),
+                            LoginTextInput(
+                              name: 'password',
+                              label: 'Senha',
+                              prefixIcon: Icons.lock,
+                              obscureText: true,
+                              validator: FormBuilderValidators.compose([
+                                FormBuilderValidators.required(
+                                  errorText: 'Senha obrigatória',
+                                ),
+                                FormBuilderValidators.minLength(
+                                  6,
+                                  errorText:
+                                      'Senha deve ter ao menos 6 caracteres',
+                                ),
+                              ]),
+                            ),
+                            const SizedBox(height: 24),
+                            ElevatedButton(
+                              onPressed: _submit,
+                              child: const Text('Entrar'),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
