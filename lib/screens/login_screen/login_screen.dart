@@ -1,3 +1,4 @@
+import 'package:desconto_direto_mobile/screens/login_screen/components/login_button.dart';
 import 'package:desconto_direto_mobile/screens/login_screen/components/login_text_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -114,9 +115,14 @@ class _LoginScreenState extends State<login_Screen> {
                                   ]),
                                 ),
                                 const SizedBox(height: 24),
-                                ElevatedButton(
+
+                                LoginButton(
+                                    text: 'Entrar',
+                                    onPressed: _submit),
+                                const SizedBox(height: 20,),
+                                LoginButton(
+                                  text: 'Cadastro',
                                   onPressed: _submit,
-                                  child: const Text('Entrar'),
                                 ),
                               ],
                             ),
