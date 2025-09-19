@@ -30,111 +30,104 @@ class _LoginScreenState extends State<login_Screen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        resizeToAvoidBottomInset: true,
-        backgroundColor: Color(0xFF023047),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return Scaffold(
+      resizeToAvoidBottomInset: true,
+      backgroundColor: Color(0xFF023047),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
 
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(top: 200.0),
-                child: Container(
-                  width: 170.0,
-                  height: 110.0,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/img.png'),
-                      fit: BoxFit.cover,
-                    ),
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(top: 200.0),
+              child: Container(
+                width: 137.0,
+                height: 115.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/img_1.png'),
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
-              const SizedBox(height: 74),
-              Expanded(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(40),
-                      topRight: Radius.circular(40),
-                    ),
-                    color: Color(0xFFFFB703),
+            ),
+            const SizedBox(height: 74),
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
                   ),
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(16, 40, 16, 40),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Text(
-                            'Login',
-                            style: GoogleFonts.kaiseiDecol(
-                              textStyle: TextStyle(
-                                color: Colors.white,
-                                fontSize: 30.0,
+                  color: Color(0xFFFFB703),
+                ),
+                width: MediaQuery.of(context).size.width,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(16, 40, 16, 40),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Text(
+                          'Login',
+                          style: GoogleFonts.kaiseiDecol(
+                            textStyle: TextStyle(
+                              color: Colors.white,
+                              fontSize: 30.0,
+                            ),
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(height: 20.0),
+                        FormBuilder(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              LoginTextInput(
+                                name: 'email',
+                                label: 'Email',
+                                prefixIcon: Icons.email,
+                                keyboardType: TextInputType.emailAddress,
+                                validator: FormBuilderValidators.compose([
+                                  FormBuilderValidators.required(
+                                    errorText: 'Email obrigatório',
+                                  ),
+                                  FormBuilderValidators.email(
+                                    errorText: 'Email inválido',
+                                  ),
+                                ]),
                               ),
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(height: 20.0),
-                          FormBuilder(
-                            key: _formKey,
-                            child: Column(
-                              children: [
-                                LoginTextInput(
-                                  name: 'email',
-                                  label: 'Email',
-                                  prefixIcon: Icons.email,
-                                  keyboardType: TextInputType.emailAddress,
-                                  validator: FormBuilderValidators.compose([
-                                    FormBuilderValidators.required(
-                                      errorText: 'Email obrigatório',
-                                    ),
-                                    FormBuilderValidators.email(
-                                      errorText: 'Email inválido',
-                                    ),
-                                  ]),
-                                ),
-                                const SizedBox(height: 24),
-                                LoginTextInput(
-                                  name: 'password',
-                                  label: 'Senha',
-                                  prefixIcon: Icons.lock,
-                                  obscureText: true,
-                                  validator: FormBuilderValidators.compose([
-                                    FormBuilderValidators.required(
-                                      errorText: 'Senha obrigatória',
-                                    ),
-                                    FormBuilderValidators.minLength(
-                                      6,
-                                      errorText:
-                                          'Senha deve ter ao menos 6 caracteres',
-                                    ),
-                                  ]),
-                                ),
-                                const SizedBox(height: 24),
+                              const SizedBox(height: 24),
+                              LoginTextInput(
+                                name: 'password',
+                                label: 'Senha',
+                                prefixIcon: Icons.lock,
+                                obscureText: true,
+                                validator: FormBuilderValidators.compose([
+                                  FormBuilderValidators.required(
+                                    errorText: 'Senha obrigatória',
+                                  ),
+                                  FormBuilderValidators.minLength(
+                                    6,
+                                    errorText:
+                                        'Senha deve ter ao menos 6 caracteres',
+                                  ),
+                                ]),
+                              ),
+                              const SizedBox(height: 24),
 
-                                LoginButton(
-                                    text: 'Entrar',
-                                    onPressed: _submit),
-                                const SizedBox(height: 20,),
-                                LoginButton(
-                                  text: 'Cadastro',
-                                  onPressed: _submit,
-                                ),
-                              ],
-                            ),
+                              LoginButton(text: 'Entrar', onPressed: _submit),
+                              const SizedBox(height: 20),
+                              LoginButton(text: 'Cadastro', onPressed: _submit),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
