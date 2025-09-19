@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginButton extends StatelessWidget {
+class GlobalButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final Color color;
   final Color textColor;
 
-  const LoginButton({
+  const GlobalButton({
     Key? key,
     required this.text,
     required this.onPressed,
@@ -20,7 +20,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 250,
-      height: 45,
+      height: 50,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
