@@ -13,22 +13,27 @@ class LoginButton extends StatelessWidget {
     required this.text,
     required this.onPressed,
     this.color = const Color(0xFF023047),
-    this.textColor = const Color(0xFFFFB703),
+    this.textColor = const Color(0xFFFFFFFF),
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 32.0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      ),
-      onPressed: onPressed,
-      child: Text(
-        text,
-        style: GoogleFonts.kaiseiDecol(
-          textStyle: TextStyle(color: textColor, fontSize: 16),
+    return SizedBox(
+      width: 250,
+      height: 45,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        onPressed: onPressed,
+        child: Text(
+          text,
+          style: GoogleFonts.kaiseiDecol(
+            textStyle: TextStyle(color: textColor, fontSize: 16),
+          ),
         ),
       ),
     );
