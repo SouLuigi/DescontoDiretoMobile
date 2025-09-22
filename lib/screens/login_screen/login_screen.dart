@@ -30,102 +30,113 @@ class _LoginScreenState extends State<login_Screen> {
 
   @override
   Widget build(BuildContext context) {
+    final bool keyboardOpen = MediaQuery.of(context).viewInsets.bottom > 0;
+
+    Widget content = buildContainer(context);
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xFF023047),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            // Logo e espaço (ajustados para um layout mais dinâmico)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(16, 200, 16, 40),
-              child: Container(
-                width: 155.0,
-                height: 144.0,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage('assets/images/logo_text.png'),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ), // Espaço para o logo
-            const SizedBox(height: 50),
-            // Container do formulário
-            Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  topRight: Radius.circular(40),
-                ),
-                color: Color(0xFFFFB703),
-              ),
+      body: SafeArea(child: SingleChildScrollView(child: content)),
+    );
+  }
 
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 30, 16, 40),
-                child: Column(
-                  children: [
-                    Text(
-                      'Login',
-                      style: GoogleFonts.kaiseiDecol(
-                        textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 30.0,
-                        ),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 30.0),
-                    FormBuilder(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          LoginTextInput(
-                            name: 'email',
-                            label: 'Email',
-                            prefixIcon: Icons.email,
-                            keyboardType: TextInputType.emailAddress,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(
-                                errorText: 'Email obrigatório',
-                              ),
-                              FormBuilderValidators.email(
-                                errorText: 'Email inválido',
-                              ),
-                            ]),
-                          ),
-                          const SizedBox(height: 25),
-                          LoginTextInput(
-                            name: 'password',
-                            label: 'Senha',
-                            prefixIcon: Icons.lock,
-                            obscureText: true,
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(
-                                errorText: 'Senha obrigatória',
-                              ),
-                              FormBuilderValidators.minLength(
-                                6,
-                                errorText:
-                                    'Senha deve ter ao menos 6 caracteres',
-                              ),
-                            ]),
-                          ),
-                          const SizedBox(height: 30),
-                          GlobalButton(text: 'Entrar', onPressed: _submit),
-                          const SizedBox(height: 20),
-                          GlobalButton(text: 'Cadastro', onPressed: _submit),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+  Column buildContainer(BuildContext context) {
+    return Column(
+      spacing: 20,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 180, 16, 40),
+          child: Container(
+            width: 155.0,
+            height: 144.0,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('assets/images/logo_text.png'),
+                fit: BoxFit.cover,
               ),
             ),
-          ],
+          ),
         ),
-      ),
+        Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(40),
+              topRight: Radius.circular(40),
+            ),
+            color: Color(0xFFFFB703),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 30, 16, 40),
+            child: Column(
+              spacing: 24,
+              children: [
+                Text(
+                  'Login',
+                  style: GoogleFonts.kaiseiDecol(
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 30.0,
+                    ),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                FormBuilder(
+                  key: _formKey,
+                  child: Column(
+                    spacing: 20,
+                    children: [
+                      LoginTextInput(
+                        name: 'email',
+                        label: 'Email',
+                        prefixIcon: Icons.email,
+                        keyboardType: TextInputType.emailAddress,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                            errorText: 'Email obrigatório',
+                          ),
+                          FormBuilderValidators.email(
+                            errorText: 'Email inválido',
+                          ),
+                        ]),
+                      ),
+                      
+                      LoginTextInput(
+                        name: 'password',
+                        label: 'Senha',
+                        prefixIcon: Icons.lock,
+                        obscureText: true,
+                        validator: FormBuilderValidators.compose([
+                          FormBuilderValidators.required(
+                            errorText: 'Senha obrigatória',
+                          ),
+                          FormBuilderValidators.minLength(
+                            6,
+                            errorText: 'Senha deve ter ao menos 6 caracteres',
+                          ),
+                        ]),
+                      ),
+
+                      GlobalButton(text: 'Entrar', onPressed: _submit),
+                      GlobalButton(text: 'Cadastro', onPressed: _submit),
+                      GestureDetector(
+                        onTap: () {
+                          print('Texto clicado');
+                        },
+                        child: Text(
+                          'Esqueceu a senha?',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
